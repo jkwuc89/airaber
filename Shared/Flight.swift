@@ -75,6 +75,7 @@ class Flight {
         let boardsAt = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(Double(arc4random_uniform(21600) + 1800)))
         let delayed = dictionary["delayed"]!
         let gate = dictionary["gate"]!
+        // Seat assignment is currently randomly generated
         let row = ["A", "B", "C", "D", "E", "F", "G"]
         let seat = "\(arc4random_uniform(40) + 1)\(row[Int(arc4random_uniform(UInt32(row.count)))])"
         self.init(origin: origin, destination: destination, number: number, boardsAt: boardsAt, delayed: delayed, gate: gate, seat: seat)
