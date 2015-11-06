@@ -45,7 +45,9 @@ class FlightInterfaceController: WKInterfaceController {
     // Initialize this interface control with data contained in the specified context
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        // Load all flights and use first to set the flight property
-        flight = Flight.allFlights().first!
+        // Tapped flight is passed in from ScheduleInterfaceController via context
+        if let flight = context as? Flight {
+            self.flight = flight
+        }
     }
 }
