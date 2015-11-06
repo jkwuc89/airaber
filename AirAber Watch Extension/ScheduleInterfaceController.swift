@@ -12,6 +12,7 @@ import Foundation
 class ScheduleInterfaceController: WKInterfaceController {
     @IBOutlet var flightsTable: WKInterfaceTable!
     var flights = Flight.allFlights()
+    var selectedIndex = 0
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -29,9 +30,27 @@ class ScheduleInterfaceController: WKInterfaceController {
         }
     }
     
+    // Schedule interface is now visible
+    override func didAppear() {
+        super.didAppear()
+        // If the selected flight is checked in, attempt to cast controller to a FlightRowController
+        if flights[selectedIndex].checkedIn,
+            let controller = flightsTable.rowControllerAtIndex(selectedIndex) as? FlightRowController {
+            // Execute the given closure to update the row with animation
+            animateWithDuration(0.35, animations: { () -> Void in
+                // 3
+                controller.updateForCheckIn()
+            })
+        }
+    }
+    
     // Handle taps on flight rows
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
         let flight = flights[rowIndex]
-        presentControllerWithName("Flight", context: flight)
+        selectedIndex = rowIndex
+        // Present both controllers for the flight. User can swipe between
+        // them on the watch face...pretty cool!
+        let controllers = ["Flight", "CheckIn"]
+        presentControllerWithNames(controllers, contexts:[flight, flight])
     }
 }

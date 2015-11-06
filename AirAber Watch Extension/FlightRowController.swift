@@ -34,4 +34,11 @@ class FlightRowController: NSObject {
             }
         }
     }
+    
+    func updateForCheckIn() {
+        // Update color of flight to reflect checked in status
+        let color = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1)
+        planeImage.setTintColor(color)
+        separator.setColor(color);
+    }
 }
