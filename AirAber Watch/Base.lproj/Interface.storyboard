@@ -58,6 +58,36 @@
             </objects>
             <point key="canvasLocation" x="716" y="578.75"/>
         </scene>
+        <!--BoardingPass-->
+        <scene sceneID="n3l-8x-BBh">
+            <objects>
+                <controller identifier="BoardingPass" id="R04-FZ-Cad" customClass="BoardingPassInterfaceController" customModule="AirAber_Watch_Extension">
+                    <items>
+                        <group height="30" alignment="center" spacing="4" id="Hko-ZO-3vF">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="MAN" id="ZTk-A3-7Vh">
+                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                </label>
+                                <imageView width="24" height="20" alignment="left" verticalAlignment="center" image="Plane" id="wxi-Uy-gKT">
+                                    <color key="tintColor" red="0.98039215690000003" green="0.066666666669999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </imageView>
+                                <label alignment="left" verticalAlignment="center" text="SFO" id="C4G-jz-BJI">
+                                    <fontDescription key="font" type="system" weight="semibold" pointSize="20"/>
+                                </label>
+                            </items>
+                        </group>
+                        <imageView width="66" height="66" alignment="center" verticalAlignment="center" image="Activity" animationDuration="1" id="Nth-bj-uXy"/>
+                    </items>
+                    <edgeInsets key="margins" left="1" right="1" top="6" bottom="0.0"/>
+                    <connections>
+                        <outlet property="boardingPassImage" destination="Nth-bj-uXy" id="0sf-wu-KM1"/>
+                        <outlet property="destinationLabel" destination="C4G-jz-BJI" id="1LM-AI-EyN"/>
+                        <outlet property="originLabel" destination="ZTk-A3-7Vh" id="Zir-AN-Xso"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="906" y="578"/>
+        </scene>
         <!--CheckIn-->
         <scene sceneID="SQb-4s-gaa">
             <objects>
@@ -101,7 +131,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="905" y="457"/>
+            <point key="canvasLocation" x="906" y="335"/>
         </scene>
         <!--Air Aber-->
         <scene sceneID="rVz-Gv-rhJ">

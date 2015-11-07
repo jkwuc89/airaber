@@ -48,9 +48,9 @@ class ScheduleInterfaceController: WKInterfaceController {
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
         let flight = flights[rowIndex]
         selectedIndex = rowIndex
-        // Present both controllers for the flight. User can swipe between
+        // Present controllers for the flight. User can swipe between
         // them on the watch face...pretty cool!
-        let controllers = ["Flight", "CheckIn"]
+        let controllers = flight.checkedIn ? ["Flight", "BoardingPass"] : ["Flight", "CheckIn"]
         presentControllerWithNames(controllers, contexts:[flight, flight])
     }
 }

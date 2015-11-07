@@ -34,6 +34,8 @@ class Flight {
     }
     var checkedIn = false
     var boardingPass: UIImage?
+    // Flight reference containing the origin, destination,
+    // flight number and seat assignment
     var reference: String {
         get {
             return "\(origin):\(destination):\(number):\(seat)"

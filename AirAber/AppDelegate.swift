@@ -7,14 +7,40 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
-  var window: UIWindow?
-  
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    return true
-  }
+    var window: UIWindow?
+    // WCSession property for communicating with the companion Watch app
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // If Watch connectivity is supported, set the WCSession to the
+        // singleton default session provided by the Watch connectivity framework
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+        }
+        return true
+    }
+    
+}
 
+// WCSession delegate implementation
+extension AppDelegate: WCSessionDelegate {
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject],
+        replyHandler: ([String : AnyObject]) -> Void) {
+            // Get the Flight reference and create a boarding pass for it
+            if let reference = message["reference"] as? String, boardingPass = QRCode(reference) {
+                // Send the boarding pass back via the session's reply handler
+                replyHandler(["boardingPassData": boardingPass.PNGData])
+            }
+        }
 }
